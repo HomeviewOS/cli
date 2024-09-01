@@ -1,0 +1,38 @@
+{
+  "name": "homeview-cli",
+  "description": "Develop Homeview applications on any device",
+  "version": "1.0.0-alpha",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "npm run obfuscate && npm run pkg",
+    "obfuscate": "javascript-obfuscator index.js --config obf-config.json --output index.obf.js",
+    "pkg": "pkg index.obf.js --public --no-bytecode --targets node18-linux-x64,node18-macos-x64,node18-win-x64 --output bin/homeview-cli",
+    "pkg:latest": "pkg index.obf.js --public --no-bytecode --targets node20-linux-x64,node20-macos-x64,node20-win-x64 --output bin/homeview-cli"
+  },
+  "keywords": [],
+  "author": "Homeview",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^10.1.8",
+    "jsonschema": "^1.4.1",
+    "ora": "^8.1.0",
+    "path": "^0.12.7",
+    "prompts": "^2.4.2",
+    "tar": "^7.4.3",
+    "util": "^0.12.5"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^4.1.1",
+    "pkg": "^5.8.1"
+  },
+  "pkg": {
+    "options": [
+      "experimental-modules"
+    ]
+  }
+}

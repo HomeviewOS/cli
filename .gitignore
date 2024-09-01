@@ -1,0 +1,7 @@
+bin/
+build/
+node_modules/
+homeview.json
+
+## !! EXPERIMENTAL
+package-lock.json
