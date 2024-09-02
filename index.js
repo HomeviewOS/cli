@@ -196,7 +196,7 @@ async function buildThread(config, buildPath, configPath) {
 
 function saveConfig(filePath, config) {
     fs.writeJsonSync(filePath, config, { spaces: 2 });
-    console.log(chalk.green(`√ Config saved to ${filePath}`));
+    console.log(chalk.green(`+ Config saved to ${filePath}`));
 }
 
 function loadConfig(filePath) {
