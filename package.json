@@ -4,6 +4,9 @@
   "version": "1.0.0-alpha",
   "type": "module",
   "main": "index.js",
+  "bin": {
+    "homeview-cli": "./index.js"
+  },
   "scripts": {
     "start": "node index.js"
   },
