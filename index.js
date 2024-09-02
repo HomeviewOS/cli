@@ -6,10 +6,18 @@ import ora from 'ora';
 import chalk from 'chalk';
 import fs from 'fs-extra';
 import path from 'path';
+import updateNotifier from 'update-notifier';
 import { Validator } from 'jsonschema';
 import { c as createTarball } from 'tar';
 
 let version = 'v1.0.1';
+const pkg = {
+    name: '@homeview/cli',
+    version,
+};
+
+const notifier = updateNotifier({ pkg, shouldNotifyInNpmScript: true });
+notifier.notify();
 
 const SCHEMA = {
     type: 'object',
@@ -264,9 +272,9 @@ async function startBuild(config, configPath) {
 
 const program = new Command();
 program
-  .name('homeview-cli')
-  .version(version)
-  //.option('-d, --debug', 'output debug information');
+    .name('homeview-cli')
+    .version(version)
+//.option('-d, --debug', 'output debug information');
 
 program
     .command('init')
