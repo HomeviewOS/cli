@@ -259,7 +259,7 @@ async function startBuild(config, configPath) {
 
         spinner.stopAndPersist({
             symbol: chalk.green('√'),
-            text: `Build complete! (${minutes > 0 ? `${minutes}m ` : ''}${seconds}s)\n${chalk.green('+')} Final size: ${buildSize}`
+            text: `Build complete! (${minutes > 0 ? `${minutes}m ` : ''}${seconds}s)\n${chalk.green('+')} Final size: ${chalk.yellow(buildSize)}`
         });
     } catch (err) {
         if (canceled) return;
