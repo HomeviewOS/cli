@@ -1,6 +1,7 @@
 build/
 node_modules/
 homeview.json
+.npmrc
 
 ## !! EXPERIMENTAL
 package-lock.json
