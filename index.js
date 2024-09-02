@@ -183,7 +183,7 @@ async function buildThread(config, buildPath, configPath) {
         archiveStream.on('error', reject);
     });
     fs.removeSync(tarballPath);
-    return true;
+    return fs.statSync(archivePath).size;
 }
 
 function saveConfig(filePath, config) {
@@ -234,7 +234,7 @@ async function startBuild(config, configPath) {
     try {
         for (let i = 0; i <= 100; i += 10) {
             if (canceled) return;
-            await buildThread(config, buildPath, configPath);
+            await new Promise(resolve => setTimeout(resolve, 100));
             const elapsed = Date.now() - startTime;
             minutes = Math.floor(elapsed / 60000);
             seconds = Math.floor((elapsed % 60000) / 1000);
@@ -242,9 +242,16 @@ async function startBuild(config, configPath) {
             spinner.text = `Building ${config.package_name}... (${timeString})`;
         }
 
+        const buildSizeBytes = await buildThread(config, buildPath, configPath);
+        //console.log(buildSizeBytes);
+        const buildSize = buildSizeBytes >= 1024 * 1024
+            ? `${(buildSizeBytes / (1024 * 1024)).toFixed(2)} MB`
+            : `${(buildSizeBytes / 1024).toFixed(2)} KB`;
+        //console.log(buildSize);
+
         spinner.stopAndPersist({
             symbol: chalk.green('√'),
-            text: `Build complete! (${minutes > 0 ? `${minutes}m ` : ''}${seconds}s)`
+            text: `Build complete! (${minutes > 0 ? `${minutes}m ` : ''}${seconds}s)\n${chalk.green('+')} Final size: ${buildSize}`
         });
     } catch (err) {
         if (canceled) return;
