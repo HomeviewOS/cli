@@ -10,29 +10,25 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        node-version: [18.x]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js ${{ matrix.node-version }}
+      - name: Set up Node.js 20.x
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20.x
 
       - name: Install dependencies
         run: npm install
 
       - name: Build CLI
         run: npm run build
-        
+
       - name: Upload built files as artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: homeview-cli-${{ matrix.os }}
+          name: homeview-cli
           path: bin/
