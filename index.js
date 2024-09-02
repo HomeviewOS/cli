@@ -113,7 +113,7 @@ async function gatherAppInfo(schema) {
     );
 
     const onCancel = (prompt, answers) => {
-        handleInterrupt('Initialization cancelled.');
+        handleInterrupt('! Initialization cancelled.');
         process.exit(0);
     };
 
@@ -291,14 +291,14 @@ program
                 });
 
                 if (!response.overwrite) {
-                    console.log(chalk.red('Initialization canceled.'));
+                    console.log(chalk.red('! Initialization canceled.'));
                     return;
                 }
             }
             const appInfo = await gatherAppInfo(SCHEMA);
             saveConfig(filePath, appInfo);
         } catch (error) {
-            console.error(chalk.red('An error occurred during initialization.'));
+            console.error(chalk.red('! An error occurred during initialization.'));
         }
     });
 
