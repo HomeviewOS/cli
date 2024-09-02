@@ -9,7 +9,7 @@ import path from 'path';
 import { Validator } from 'jsonschema';
 import { c as createTarball } from 'tar';
 
-let version = 'v1.0.0-alpha';
+let version = 'v1.0.1';
 
 const SCHEMA = {
     type: 'object',
