@@ -24,12 +24,12 @@ jobs:
 
             - name: Publish version
               if: steps.release.outputs.tag == ''
-              run: npm publish --access public
+              run: npm publish --access=public
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
             - name: Publish tagged version
               if: steps.release.outputs.tag != ''
-              run: npm publish --tag ${{ steps.release.outputs.tag }} --access public
+              run: npm publish --access=public --tag ${{ steps.release.outputs.tag }}
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
