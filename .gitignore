@@ -2,6 +2,7 @@ bin/
 build/
 node_modules/
 homeview.json
+index.obf.js
 
 ## !! EXPERIMENTAL
 package-lock.json
