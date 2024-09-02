@@ -16,7 +16,7 @@ const pkg = {
     version,
 };
 
-const notifier = updateNotifier({ pkg, shouldNotifyInNpmScript: true });
+const notifier = updateNotifier({ pkg, shouldNotifyInNpmScript: true, isGlobal: true });
 notifier.notify();
 
 const SCHEMA = {
